@@ -4,7 +4,9 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import CompleteProfile from './pages/CompleteProfile'
 import Home from './pages/Home'
-import AdminHome from './pages/AdminHome'
+import AdminPortfolios from './pages/admin/AdminPortfolios'
+import PortfolioForm from './pages/admin/PortfolioForm'
+import AdminContacts from './pages/admin/AdminContacts'
 
 export default function App() {
   return (
@@ -21,7 +23,11 @@ export default function App() {
       </Route>
 
       <Route element={<ProtectedRoute role="admin" />}>
-        <Route path="/admin" element={<AdminHome />} />
+        <Route path="/admin" element={<Navigate to="/admin/portfolios" replace />} />
+        <Route path="/admin/portfolios" element={<AdminPortfolios />} />
+        <Route path="/admin/portfolios/new" element={<PortfolioForm />} />
+        <Route path="/admin/portfolios/:id" element={<PortfolioForm />} />
+        <Route path="/admin/portfolios/:id/contacts" element={<AdminContacts />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />
